@@ -6,6 +6,8 @@ import lombok.Data;
 @Data
 @MappedSuperclass
 public abstract class AbstractUser {
+	private String firstName;
+	private String lastName;
 	private String username;
 	private String password;
 	private String address;
