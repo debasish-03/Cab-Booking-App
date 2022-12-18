@@ -57,4 +57,13 @@ public class ICustomerImplementation implements ICustomerService {
 		return existingCustomer;
 	}
 
+	@Override
+	public Customer validateCustomer(String username, String password) throws CustomerNotFoundException {
+		Customer customer = iCustomerRepository.findByUserNameAndPassword(username, password);
+		if(customer == null) {
+			throw new CustomerNotFoundException("Customer", "username", username);
+		}
+		return customer;
+	}
+
 }

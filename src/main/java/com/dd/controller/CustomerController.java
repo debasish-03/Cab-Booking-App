@@ -53,5 +53,14 @@ public class CustomerController {
 	public List<Customer> getAllCustomer() {
 		return iCustomerService.viewAllCustomer();
 	}
-
+	
+	@PostMapping("login")
+	public ResponseEntity<String> loginUser(@RequestBody Customer customer) {
+		try {
+			iCustomerService.validateCustomer(customer.getUsername(), customer.getPassword());
+			return new ResponseEntity<String>("Login Successful", HttpStatus.OK);	
+		} catch(Exception e) {
+			return new ResponseEntity<String>("Login Failed", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }
